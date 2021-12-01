@@ -26,7 +26,7 @@ function App (){
 
   return (
       <main className='App'>
-        <h1>Drag&Drop area:</h1>
+        <h1>AMR prediction:</h1>
         <DropZone onDrop={onDrop}/>
         {(predictionResult !== null &&  formatCheck===true) &&      
           <Results resObj={predictionResult}/>     
