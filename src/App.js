@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react'
 import DropZone from './DropZone'
 import Results from './Results'
-
+import { CSVLink, CSVDownload } from "react-csv";
 
 function App (){
 
@@ -25,14 +25,26 @@ function App (){
     
   })
 
+  function makeArrayOfObj(props){
+    const aoo = props.map((prop) =>  
+      JSON.parse(prop)
+    );
+    console.log(aoo);
+    return(aoo)
+  }
+
   return (
       <main className='App'>
-        <h1>AMR prediction:</h1>
+        <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
         <DropZone onDrop={onDrop}/>
-        {(predictionResult !== null &&  formatCheck===true) &&      
-          <Results resArr={predictionResult}/>     
+        {(predictionResult !== null &&  formatCheck===true) &&  
+          <div>
+            <button id="download"><CSVLink data={makeArrayOfObj(predictionResult)}>Download Results as CSV</CSVLink></button>
+            <Results resArr={predictionResult}/>
+          </div>    
         }
         {formatCheck===0 && <h1>Wrong format!</h1>}
+        
       </main> 
   )
 }
