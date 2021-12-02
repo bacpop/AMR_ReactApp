@@ -15,8 +15,9 @@ function App (){
       setFormat(true);
       window.Worker[0].postMessage(acceptedFiles);
       window.Worker[0].onmessage = function(event){
-          const result = JSON.parse(event.data);
+          const result = event.data;
           console.log(result);
+          
           setPrediction(result);
     }
     }
@@ -29,7 +30,7 @@ function App (){
         <h1>AMR prediction:</h1>
         <DropZone onDrop={onDrop}/>
         {(predictionResult !== null &&  formatCheck===true) &&      
-          <Results resObj={predictionResult}/>     
+          <Results resArr={predictionResult}/>     
         }
         {formatCheck===0 && <h1>Wrong format!</h1>}
       </main> 
