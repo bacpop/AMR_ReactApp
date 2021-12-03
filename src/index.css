@@ -5,6 +5,7 @@ body {
 
 h1 {
   font-size: 2em;
+  text-align: center;
 }
 
 h2 {
@@ -16,7 +17,7 @@ h2 {
   height: 3cm;
   text-align: center;
   border: 2.5px dashed #5D6063;
-  margin: 0 3cm 0 3cm;
+  margin: 0 3cm 1cm 3cm;
 }
 
 table, th, td {
@@ -34,4 +35,25 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+#download{
+  background-color: #e7e6e6; 
+  border-radius: 2px;
+  border: 0.5px solid #5D6063;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+#spinner{
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+a {
+  color: #414141;
+  text-decoration: none;
 }
