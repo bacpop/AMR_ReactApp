@@ -20,11 +20,12 @@ onmessage = function(message) {
 
       var allResults = [];
       for(var i = 0; i < message.data.length; i++) {
-        eval('var result' + i + '=  module.make_prediction("/working/" + f'+i+'.name);'); //make predictions for all files
-        eval('allResults.push(result' + i + ');');
+        try{
+          eval('var result' + i + '=  module.make_prediction("/working/" + f'+i+'.name);'); //make predictions for all files
+          eval('allResults.push(result' + i + ');');
+        }
+        catch(err){console.log("Error catched")}
       }
-      
-      
       console.log(allResults)
       self.postMessage(allResults);
       

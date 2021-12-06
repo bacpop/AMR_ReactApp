@@ -1,23 +1,44 @@
+:root {
+  --blue: #003e74;
+  --background: #f8f8f8;
+  --darkblue: #030f25;
+  --spinner: #003e744f;
+}
+
 body {
-  color: #414141;                  
+  color: var(--darkblue);                  
   font-size: 18px;
+  background-color: #f8f8f8;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
-  font-size: 2em;
-  text-align: center;
+  font-size: 2.5em;
+  color: var(--blue);
+  margin-left: 3cm;
+  margin-right: 3cm;
 }
 
-h2 {
-  font-size: 1.6em;
+h4{
+  text-align: center;
+  color: red;
+}
+
+p{
+  color: var(--darkblue);
+  margin-left: 3cm;
+  margin-right: 3cm;
 }
 
 .dragdrop {
-  background-color: #d4d4d4;
-  height: 3cm;
+  background-color: #3a6b9b;
+  height: 2.7cm;
   text-align: center;
-  border: 2.5px dashed #5D6063;
-  margin: 0 3cm 1cm 3cm;
+  border: 2.5px dashed var(--background);
+  margin: 1.3cm 7cm 1cm 7cm;
+}
+.dragdrop_text{
+  color: var(--background);
 }
 
 table, th, td {
@@ -25,12 +46,17 @@ table, th, td {
   border-collapse: collapse;
   text-align: center;
   padding: 15px;
+  margin-bottom: 2cm;
 }
 th, td {
   border-bottom: 1px solid #ddd;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+th{
+  color: var(--blue);
+}
+
+tr:nth-child(even) {background-color: #cee1eb;}
 
 .center {
   margin-left: auto;
@@ -38,14 +64,17 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 }
 
 #download{
-  background-color: #e7e6e6; 
-  border-radius: 2px;
-  border: 0.5px solid #5D6063;
+  background-color: var(--background); 
+  border-radius: 4px;
+  border: 2.3px solid var(--blue);
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  font-weight: bold;
   padding: 10px 20px;
   display: block;
   margin: 0 auto 20px auto;
+  
 }
 
 #spinner{
@@ -54,6 +83,6 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 }
 
 a {
-  color: #414141;
+  color:  var(--blue);
   text-decoration: none;
 }
