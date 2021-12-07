@@ -86,3 +86,35 @@ a {
   color:  var(--blue);
   text-decoration: none;
 }
+
+.falseLength{
+  color:crimson;
+}
+
+.rightLength{
+  color:var(--darkblue);
+}
+
+.CellWithComment{
+  position:relative;
+  color:crimson;
+}
+
+.CellComment{
+  display:none;
+  position:absolute; 
+  z-index:100;
+  border:1px;
+  background-color:white;
+  border-style:solid;
+  border-width:1px;
+  border-color:crimson;
+  padding:3px;
+  color:crimson; 
+  top:10px; 
+  left:25%;
+}
+
+.CellWithComment:hover span.CellComment{
+  display:block;
+}
