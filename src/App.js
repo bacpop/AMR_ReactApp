@@ -14,9 +14,10 @@ function App (){
   const onDrop = useCallback(acceptedFiles => {
     setLoading(true);
     setPrediction(null);
+    setFormat(true);
     console.log(acceptedFiles.length);
     if(acceptedFiles.length !==0){
-      setFormat(true);
+      
       window.Worker[0].postMessage(acceptedFiles);
       window.Worker[0].onmessage = function(event){
           const result = event.data;
@@ -29,9 +30,9 @@ function App (){
           setLoading(false);
     }
     }
-    else {setFormat(0);}
+    else {setFormat(0);setLoading(false);}
     
-  })
+  },[])
 
   function makeArrayOfObj(props){
     const aoo = props.map((prop) =>  
@@ -45,7 +46,7 @@ function App (){
         <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
         <p>Maybe some text here.</p>
         <DropZone onDrop={onDrop}/>
-        {(lengthCheck!==0 && loading=== false) && <h4>Length of {lengthCheck} sequence(s) out of range (1.5Mb-3Mb)!</h4>}
+        {(lengthCheck!==0 && loading=== false && formatCheck===true) && <h4>Length of {lengthCheck} sequence(s) out of range (1.5Mb-3Mb)!</h4>}
         {loading===true && <SpinnerCircular id = "spinner" size={58} thickness={180} speed={132} color="rgba(0, 62, 116, 1)" secondaryColor="rgba(158, 175, 190, 1)" />}
         {(predictionResult !== null &&  formatCheck===true && loading===false) &&  
           <div>
