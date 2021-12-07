@@ -7,7 +7,7 @@ function Results(props){
     
     const tableItems =[];
 
-    for(var i = 0; i <results.length; i++){
+    for(let i = 0; i <results.length; i++){
         var newStrain = antibiotics.map((antibiotic) =>  
             <td key={antibiotic}>{results[i][antibiotic]}</td>
         );
