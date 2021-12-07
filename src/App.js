@@ -6,49 +6,38 @@ import { SpinnerCircular } from 'spinners-react';
 
 function App (){
 
-  const [predictionResult, setPrediction] = useState(null); //state to store results
+  const [predictionResult, setPrediction] = useState([]); //state to store results
   const [formatCheck, setFormat] = useState(null);
   const [lengthCheck, setLength] = useState(0);
   const [loading, setLoading] = useState(null);
 
   const onDrop = useCallback(acceptedFiles => {
     setLoading(true);
-    setPrediction(null);
-    setFormat(true);
-    console.log(acceptedFiles.length);
+    setPrediction([]);
+    console.log(acceptedFiles[0])
     if(acceptedFiles.length !==0){
-      
-      window.Worker[0].postMessage(acceptedFiles);
-      window.Worker[0].onmessage = function(event){
-          const result = event.data;
-          console.log(result);
-          if(result.length!==0){
-          setPrediction(makeArrayOfObj(result));
-          } 
-          setLength(acceptedFiles.length-result.length);
-
-          setLoading(false);
-    }
+      setFormat(true);
+      for(var i = 0; i < acceptedFiles.length; i++){
+        window.Worker[0].postMessage(acceptedFiles[i]);
+      }
     }
     else {setFormat(0);setLoading(false);}
-    
-  },[])
 
-  function makeArrayOfObj(props){
-    const aoo = props.map((prop) =>  
-      JSON.parse(prop)
-    );
-    return(aoo)
-  }
+    window.Worker[0].onmessage = function(event){
+        const result = JSON.parse(event.data);
+        console.log(result);
+        setPrediction(predictionResult => [...predictionResult, result]);
+        console.log(predictionResult);
+        setLoading(false);
+    }
+  },[])
 
   return (
       <main className='App'>
         <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
         <p>Maybe some text here.</p>
         <DropZone onDrop={onDrop}/>
-        {(lengthCheck!==0 && loading=== false && formatCheck===true) && <h4>Length of {lengthCheck} sequence(s) out of range (1.5Mb-3Mb)!</h4>}
-        {loading===true && <SpinnerCircular id = "spinner" size={58} thickness={180} speed={132} color="rgba(0, 62, 116, 1)" secondaryColor="rgba(158, 175, 190, 1)" />}
-        {(predictionResult !== null &&  formatCheck===true && loading===false) &&  
+        {(predictionResult !== [] &&  formatCheck===true && loading===false) &&  
           <div>
             <button id="download"><CSVLink data={predictionResult}>Download Results as CSV</CSVLink></button>
             <Results resArr={predictionResult}/>
