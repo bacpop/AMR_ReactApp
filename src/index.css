@@ -49,14 +49,13 @@ table, th, td {
   margin-bottom: 2cm;
 }
 th, td {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid var(--background);
 }
 
 th{
   color: var(--blue);
 }
 
-tr:nth-child(even) {background-color: #cee1eb;}
 
 .center {
   margin-left: auto;
@@ -87,17 +86,10 @@ a {
   text-decoration: none;
 }
 
-.falseLength{
-  color:crimson;
-}
-
-.rightLength{
-  color:var(--darkblue);
-}
 
 .CellWithComment{
   position:relative;
-  color:crimson;
+  color:rgb(160, 17, 46);
 }
 
 .CellComment{
@@ -108,13 +100,71 @@ a {
   background-color:white;
   border-style:solid;
   border-width:1px;
-  border-color:crimson;
+  border-color:rgb(160, 17, 46);
   padding:3px;
-  color:crimson; 
+  color:rgb(160, 17, 46); 
   top:10px; 
-  left:25%;
+  left:10px;
+}
+
+.CellCommentAntibiotic{
+  display:none;
+  position:absolute; 
+  z-index:100;
+  border:1px;
+  background-color:white;
+  border-style:solid;
+  border-width:1px;
+  border-color:rgb(160, 17, 46);
+  padding:3px;
+  color:rgb(160, 17, 46); 
 }
 
 .CellWithComment:hover span.CellComment{
   display:block;
 }
+
+.CellWithComment:hover span.CellCommentAntibiotic{
+  display:block;
+}
+
+
+ .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  top: 135%;
+  left: 50%;  
+  margin-left: -100px;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+} 
