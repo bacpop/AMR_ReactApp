@@ -108,37 +108,23 @@ a {
 .CellComment{
   display:none;
   position:absolute; 
-  z-index:100;
+  z-index:1;
   border:1px;
-  background-color:white;
-  border-style:solid;
-  border-width:1px;
-  border-color:rgb(160, 17, 46);
-  padding:3px;
+  background-color:var(--background);
+  padding:0px;
   color:rgb(160, 17, 46); 
-  top:10px; 
-  left:10px;
-}
-
-.CellCommentAntibiotic{
-  display:none;
-  position:absolute; 
-  z-index:100;
-  border:1px;
-  background-color:white;
-  border-style:solid;
-  border-width:1px;
-  border-color:rgb(160, 17, 46);
-  padding:3px;
-  color:rgb(160, 17, 46); 
+  width:100%;
+  height:100%;
+  top:0px; 
+  left:2px;
 }
 
 .CellWithComment:hover span.CellComment{
   display:block;
 }
 
-.CellWithComment:hover span.CellCommentAntibiotic{
-  display:block;
+.red{
+  color:rgb(160, 17, 46);
 }
 
  .tooltip {

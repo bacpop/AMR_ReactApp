@@ -43,7 +43,7 @@ function Results(props){
     const tableItems =[];
     for(let i = 0; i <results.length; i++){
         var newStrain = antibiotics.slice(0,-1).map((antibiotic) =>  
-            <td style= {{background:getRGB(results[i][antibiotic]) }} key={antibiotic}>{results[i][antibiotic]}<span className='CellComment'>This sequence has an unusual length for S. pneumoniae</span></td> //this comment is only printed for rows with className="CellWithComment"
+            <td style= {{background:getRGB(results[i][antibiotic]) }} key={antibiotic}>{results[i][antibiotic]}<span className='CellComment'><p className="red">This sequence has an unusual length for S. pneumoniae</p></span></td> //this comment is only printed for rows with className="CellWithComment"
         );
         if(results[i]["length"]===true){ 
             tableItems.push(<tr key = {results[i]["filename"]}>{newStrain}</tr>);
