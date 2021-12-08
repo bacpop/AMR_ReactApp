@@ -7,27 +7,23 @@ import { SpinnerCircular } from 'spinners-react';
 function App (){
 
   const [predictionResult, setPrediction] = useState([]); //state to store results
-  const [formatCheck, setFormat] = useState(null);
-  const [lengthCheck, setLength] = useState(0);
-  const [loading, setLoading] = useState(null);
+  const [formatCheck, setFormat] = useState(null); //state to store if format is .fa/.fasta
+  const [loading, setLoading] = useState(null); //state to ceck if first result is loading
 
   const onDrop = useCallback(acceptedFiles => {
     setLoading(true);
     setPrediction([]);
-    console.log(acceptedFiles[0])
-    if(acceptedFiles.length !==0){
+    if(acceptedFiles.length !==0){ //check if files have been accepted (i.e. are right format)
       setFormat(true);
-      for(var i = 0; i < acceptedFiles.length; i++){
+      for(var i = 0; i < acceptedFiles.length; i++){ //send one file at a time to webworker
         window.Worker[0].postMessage(acceptedFiles[i]);
       }
     }
     else {setFormat(0);setLoading(false);}
 
     window.Worker[0].onmessage = function(event){
-        const result = JSON.parse(event.data);
-        console.log(result);
-        setPrediction(predictionResult => [...predictionResult, result]);
-        console.log(predictionResult);
+        const result = JSON.parse(event.data); 
+        setPrediction(predictionResult => [...predictionResult, result]); // add each result to state
         setLoading(false);
     }
   },[])
@@ -43,7 +39,7 @@ function App (){
             <Results resArr={predictionResult}/>
           </div>    
         }
-        {(formatCheck===0 && loading===false)&& <h1>Wrong format!</h1>}
+        {(formatCheck===0)&& <h1>Wrong format!</h1>}
         
         
       </main> 

@@ -1,7 +1,4 @@
-
 onmessage = function(message) {
-    console.log("Message received");
-    
     var instance;
     
     AMRprediction().then(module => {
@@ -13,11 +10,9 @@ onmessage = function(message) {
 
       var result=  module.make_prediction("/working/" + f.name); //make predictions for file
       
-      console.log(result)
-      self.postMessage(result);
+      self.postMessage(result); //return result
       
     });
 };
   
-
 self.importScripts('./web_amr_prediction.js');
