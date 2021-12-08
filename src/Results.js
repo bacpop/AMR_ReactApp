@@ -26,17 +26,18 @@ function Results(props){
     const antibiotics = Object.keys(results[0]);
     
      //texts for tooltips on antibiotics
-    let text_Penicillin ="Balanced Accuracy on test datasets: Massachusetts: 0.933 Maela: 0.836";
-    let text_Chloramphenicol ="Balanced Accuracy on test dataset: Maela: 0.819";
-    let text_Tetracycline ="Balanced Accuracy on test datasets: Massachusetts: 0.953 Maela: 0.940";
-    let text_Trim_sulfa ="Balanced Accuracy on test datasets: Massachusetts: 0.954 Maela: 0.837";
-    let text_Erythromycin ="Balanced Accuracy on test datasets: Massachusetts: 0.959 Maela: 0.961";
+     const text=[];
+    text["Penicillin"] ="Balanced Accuracy on test datasets: Massachusetts: 0.933 Maela: 0.836";
+    text["Chloramphenicol"] ="Balanced Accuracy on test dataset: Maela: 0.819";
+    text["Tetracycline"] ="Balanced Accuracy on test datasets: Massachusetts: 0.953 Maela: 0.940";
+    text["Trim_sulfa"] ="Balanced Accuracy on test datasets: Massachusetts: 0.954 Maela: 0.837";
+    text["Erythromycin"] ="Balanced Accuracy on test datasets: Massachusetts: 0.959 Maela: 0.961";
 
     //create head of table
     const head = [
         <th key={antibiotics[0]}>{antibiotics[0]}</th>, //do 'filename' seperately to not include tooltip
         antibiotics.slice(1,-1).map((antibiotic) =>  
-        <th key={antibiotic}><div className="tooltip" >{antibiotic}<span className='tooltiptext'>{eval("text_"+antibiotic)}</span></div></th>
+        <th key={antibiotic}><div className="tooltip" >{antibiotic}<span className='tooltiptext'>{text[antibiotic]}</span></div></th>
     )]
 
     //create table content
