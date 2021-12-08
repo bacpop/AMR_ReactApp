@@ -29,7 +29,7 @@ function Results(props){
     let text_Penicillin ="Balanced Accuracy on test datasets: Massachusetts: 0.933 Maela: 0.836";
     let text_Chloramphenicol ="Balanced Accuracy on test dataset: Maela: 0.819";
     let text_Tetracycline ="Balanced Accuracy on test datasets: Massachusetts: 0.953 Maela: 0.940";
-    let text_Trim_sulfa ="Balanced Accuracy on test datasets: Massachusetts: 0.95 Maela: 0.840";
+    let text_Trim_sulfa ="Balanced Accuracy on test datasets: Massachusetts: 0.954 Maela: 0.837";
     let text_Erythromycin ="Balanced Accuracy on test datasets: Massachusetts: 0.959 Maela: 0.961";
 
     //create head of table

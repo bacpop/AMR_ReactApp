@@ -15,8 +15,15 @@ body {
 h1 {
   font-size: 2.5em;
   color: var(--blue);
-  margin-left: 3cm;
-  margin-right: 3cm;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h4{
@@ -26,19 +33,25 @@ h4{
 
 p{
   color: var(--darkblue);
-  margin-left: 3cm;
-  margin-right: 3cm;
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dragdrop {
   background-color: #3a6b9b;
-  height: 2.7cm;
+  height: 3.2cm;
   text-align: center;
   border: 2.5px dashed var(--background);
-  margin: 1.3cm 7cm 1cm 7cm;
+  width:60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.2cm;
+  margin-top: 1.2cm;
 }
 .dragdrop_text{
   color: var(--background);
+  font-size: 1.2em;
 }
 
 table, th, td {
@@ -128,7 +141,6 @@ a {
   display:block;
 }
 
-
  .tooltip {
   position: relative;
   display: inline-block;
@@ -140,7 +152,7 @@ a {
   background-color: #555;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
+  padding: 5px;
   border-radius: 6px;
 
   position: absolute;

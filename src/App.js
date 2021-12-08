@@ -2,7 +2,6 @@ import React, {useState, useCallback} from 'react'
 import DropZone from './DropZone'
 import Results from './Results'
 import { CSVLink } from "react-csv";
-import { SpinnerCircular } from 'spinners-react';
 
 function App (){
 
@@ -31,7 +30,11 @@ function App (){
   return (
       <main className='App'>
         <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
-        <p>Maybe some text here.</p>
+        <h2>
+          This tool uses Machine Learning models to predict the probability of resistance to 5 different antibiotics. </h2><p>
+          It is based on ElasticNet models trained on data from the USA and South Africa from the <a href="https://www.pneumogen.net/gps/">GPS</a> database. </p><p>
+          Submit as many <em>S.pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
+        </p>
         <DropZone onDrop={onDrop}/>
         {(predictionResult !== [] &&  formatCheck===true && loading===false) &&  
           <div>
