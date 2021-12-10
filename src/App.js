@@ -2,6 +2,8 @@ import React, {useState, useCallback} from 'react'
 import DropZone from './DropZone'
 import Results from './Results'
 import { CSVLink } from "react-csv";
+import exampleFile from './examples/example1.fa';
+
 
 function App (){
 
@@ -10,6 +12,7 @@ function App (){
   const [loading, setLoading] = useState(null); //state to ceck if first result is loading
 
   const onDrop = useCallback(acceptedFiles => {
+    console.log(acceptedFiles);
     setLoading(true);
     setPrediction([]);
     if(acceptedFiles.length !==0){ //check if files have been accepted (i.e. are right format)
@@ -27,6 +30,27 @@ function App (){
     }
   },[])
 
+  function run_examples(){
+    console.log(exampleFile);
+    fetch(exampleFile)
+      .then(response => response.text())
+      .then((data) => {
+      console.log(data);
+      var file = new File([data], "examplefile1.fa");
+      setLoading(true);
+      setFormat(true);
+      setPrediction([]);
+      window.Worker[0].postMessage(file);
+      window.Worker[0].onmessage = function(event){
+        const result = JSON.parse(event.data); 
+        setPrediction(predictionResult => [...predictionResult, result]); // add each result to state
+        setLoading(false);
+    }
+    })
+    
+    
+  }
+
   return (
       <main className='App'>
         <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
@@ -36,6 +60,7 @@ function App (){
           Submit as many <em>S.pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
         </p>
         <DropZone onDrop={onDrop}/>
+        <button onClick={run_examples}>Try example sequences</button>
         {(predictionResult !== [] &&  formatCheck===true && loading===false) &&  
           <div>
             <button id="download"><CSVLink data={predictionResult}>Download Results as CSV</CSVLink></button>
