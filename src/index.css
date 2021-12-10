@@ -38,6 +38,11 @@ p{
   margin-right: auto;
 }
 
+.comment{
+  width:60%;
+  margin-bottom: 1.2cm;
+}
+
 .dragdrop {
   background-color: #3a6b9b;
   height: 3.2cm;
@@ -46,7 +51,6 @@ p{
   width:60%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1.2cm;
   margin-top: 1.2cm;
 }
 .dragdrop_text{
