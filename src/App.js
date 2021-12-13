@@ -1,17 +1,9 @@
 import React, {useState, useCallback} from 'react'
+import Header from './header'
 import DropZone from './DropZone'
 import Results from './Results'
 import { CSVLink } from "react-csv";
 import { SpinnerCircular } from 'spinners-react';
-import exampleFile1 from './examples/6952_7_6.fa';
-import exampleFile2 from './examples/6952_4_5.fa';
-import exampleFile3 from './examples/6999_4_6.fa';
-import exampleFile4 from './examples/6999_5_11.fa';
-import exampleFile5 from './examples/6999_7_20.fa';
-import exampleFile6 from './examples/7622_3_84.fa';
-
-const examples = [exampleFile1,exampleFile2,exampleFile3,exampleFile4,exampleFile5,exampleFile6];
-
 
 function App (){
 
@@ -39,25 +31,21 @@ function App (){
   },[])
 
   function run_examples(){
-    examples.forEach(e=>
-      fetch(e)
-        .then(response => response.text())
-        .then((data) => {
-          var file = new File([data], " "+e);
-          setLoading(true);
-          setFormat(true);
-          setPrediction([]);
-          window.Worker[0].postMessage(file);
-          window.Worker[0].onmessage = function(event){
-            const result = JSON.parse(event.data); 
-            setPrediction(predictionResult => [...predictionResult, result]); // add each result to state
-            setLoading(false);
-          }
-        })
-    )
+    setLoading(true);
+    setFormat(true);
+    setPrediction([]);
+    window.Worker[0].postMessage("example1");
+    window.Worker[0].postMessage("example2");
+    window.Worker[0].onmessage = function(event){
+      const result = JSON.parse(event.data); 
+      setPrediction(predictionResult => [...predictionResult, result]); // add each result to state
+      setLoading(false);
+    }
+       
   }
 
   return (
+    <>
       <main className='App'>
         <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
         <h2>
@@ -74,10 +62,9 @@ function App (){
             <Results resArr={predictionResult}/>
           </div>    
         }
-        {(formatCheck===0)&& <h1>Wrong format!</h1>}
-        
-        
+        {(formatCheck===0)&& <h1>Wrong format!</h1>}       
       </main> 
+    </>
   )
 }
 

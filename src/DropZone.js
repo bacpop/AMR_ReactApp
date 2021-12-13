@@ -3,7 +3,7 @@ import {useDropzone} from "react-dropzone";
 
 function DropZone({onDrop}) {
 
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({accept:'.fa, .fasta', onDrop})
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({accept:'.fa, .fasta, .fna', onDrop})
 
   return (
     <div {...getRootProps()}>

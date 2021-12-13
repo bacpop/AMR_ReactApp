@@ -41,6 +41,8 @@ p{
 .comment{
   width:60%;
   margin-bottom: 1.2cm;
+  margin-top: 2px;
+  font-size: 0.9em;
 }
 
 .dragdrop {
@@ -89,7 +91,7 @@ th{
   font-weight: bold;
   padding: 10px 20px;
   display: block;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 30px auto;
   
 }
 
@@ -103,6 +105,9 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  cursor:pointer;
+ }
 
 .CellWithComment{
   position:relative;
