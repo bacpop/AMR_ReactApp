@@ -17,9 +17,9 @@ function getRGB(prob, antibiotic){
     }
     else if(prob>0.5){ //red shades for resistant samples
         prob-=0.5;prob*=2;
-        if(antibiotic=="Penicillin"||antibiotic=="Trim_sulfa"){prob*=prob;}
-        else if (antibiotic=="Chloramphenicol"||antibiotic=="Tetracycline"){prob=Math.sqrt(prob)}
-        else if (antibiotic=="Erythromycin"){}
+        if(antibiotic==="Penicillin"||antibiotic==="Trim_sulfa"){prob*=prob;}
+        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob)}
+        else if (antibiotic==="Erythromycin"){}
         r=255;
         g=255-prob*255; 
         b=255-prob*255;
