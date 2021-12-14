@@ -15,7 +15,7 @@ function DropZone({onDrop}) {
         </div> :
         <div className="dragdrop">
           <p className="dragdrop_text">Drag 'n' drop files here, or click to select files.</p>
-          <p className="dragdrop_text"> .fa and .fasta formats are supported.</p>
+          <p className="dragdrop_text"> .fa, .fasta and .fna formats are supported.</p>
         </div>
       }
     </div>
