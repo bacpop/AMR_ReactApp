@@ -1,21 +1,28 @@
 import React from "react";
 
-function getRGB(prob){
+function getRGB(prob, antibiotic){
 //generate rgb number for diverging colormap based on probability
     let r=248; // background colour to give to filenames
     let g=248;
     let b=248;
+    
     if(prob<0.5){ // shades for sensitive samples
-        prob*=2;
-        r=0+(prob*255); //set first numbers to aimed rgb colour, second number to rest until 255
-        g=153+(prob*102);
-        b=153+(prob*102);
+        prob*=2; prob=1-prob;
+        if(antibiotic==="Penicillin"||antibiotic==="Trim_sulfa"){prob*=prob;}  //square prob to achieve more colourchanges towards the extremes 0&1
+        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob)} //squareroot of prob to achieve more changes around .5
+        else if (antibiotic==="Erythromycin"){} //linear 
+        r=255-(prob*255); 
+        g=255-(prob*102);
+        b=255-(prob*102);
     }
     else if(prob>0.5){ //red shades for resistant samples
         prob-=0.5;prob*=2;
+        if(antibiotic==="Penicillin"||antibiotic==="Trim_sulfa"){prob*=prob;}
+        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob)}
+        else if (antibiotic==="Erythromycin"){}
         r=255;
-        g=(1-prob)*255;
-        b=(1-prob)*255;
+        g=255-prob*255; 
+        b=255-prob*255;
     }
     return("rgb("+r+","+g+","+b+")")
 }
@@ -44,7 +51,7 @@ function Results(props){
     const tableItems =[];
     for(let i = 0; i <results.length; i++){
         var newStrain = antibiotics.slice(0,-1).map((antibiotic) =>  
-            <td style= {{background:getRGB(results[i][antibiotic]) }} key={antibiotic}>{results[i][antibiotic]}<span className='CellComment'><p className="red">This sequence has an unusual length for S. pneumoniae</p></span></td> //this comment is only printed for rows with className="CellWithComment"
+            <td style= {{background:getRGB(results[i][antibiotic],[antibiotic]) }} key={antibiotic}>{results[i][antibiotic]}<span className='CellComment'><p className="red">This sequence has an unusual length for S. pneumoniae</p></span></td> //this comment is only printed for rows with className="CellWithComment"
         );
         if(results[i]["length"]===true){ 
             tableItems.push(<tr key = {results[i]["filename"]}>{newStrain}</tr>);
@@ -54,7 +61,12 @@ function Results(props){
 
     return(
         <table className="center">
-            <thead><tr className="CellWithComment">{head}</tr></thead>
+            <thead>
+            <tr>
+                <td></td>
+                <th colSpan="5" scope="colgroup" style={{fontSize: 22, padding:0}}>Probability of resistance to</th>
+            </tr>
+                <tr className="CellWithComment">{head}</tr></thead>
             <tbody>{tableItems}</tbody>
         </table>
     )
