@@ -37,8 +37,8 @@ const AboutContent = ({ visible }) => {
           It is based on ElasticNet models trained on data from the USA and South Africa from the <a href="https://www.pneumogen.net/gps/">GPS</a> database. </p><p>
           Submit as many <em>S.pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
         </p>
-        <a href='https://github.com/bacpop/AMR_ReactApp' target="_blank" class="button">Website code</a>
-        <a href='https://github.com/bacpop/AMR_prediction' target="_blank" class="button">Backend code</a>
+        <a href='https://github.com/bacpop/AMR_ReactApp' target="_blank" rel="noreferrer" class="button">Website code</a>
+        <a href='https://github.com/bacpop/AMR_prediction' target="_blank" rel="noreferrer" class="button">Backend code</a>
       </div>
     </div>
   )
