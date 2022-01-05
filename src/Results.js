@@ -9,7 +9,7 @@ function getRGB(prob, antibiotic){
     if(prob<0.5){ // shades for sensitive samples
         prob*=2; prob=1-prob;
         if(antibiotic==="Penicillin"||antibiotic==="Trim_sulfa"){prob*=prob;}  //square prob to achieve more colourchanges towards the extremes 0&1
-        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob)} //squareroot of prob to achieve more changes around .5
+        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob);} //squareroot of prob to achieve more changes around .5
         else if (antibiotic==="Erythromycin"){} //linear 
         r=255-(prob*255); 
         g=255-(prob*102);
@@ -18,7 +18,7 @@ function getRGB(prob, antibiotic){
     else if(prob>0.5){ //red shades for resistant samples
         prob-=0.5;prob*=2;
         if(antibiotic==="Penicillin"||antibiotic==="Trim_sulfa"){prob*=prob;}
-        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob)}
+        else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob);}
         else if (antibiotic==="Erythromycin"){}
         r=255;
         g=255-prob*255; 
@@ -44,7 +44,7 @@ function Results(props){
     const head = [
         <th key={antibiotics[0]}>{antibiotics[0]}</th>, //do 'filename' seperately to not include tooltip
         antibiotics.slice(1,-1).map((antibiotic) =>  
-        <th key={antibiotic}><div className="tooltip" >{antibiotic}<span className='tooltiptext'>{text[antibiotic]}</span></div></th>
+        <th key={antibiotic}><div className="tooltip" >{antibiotic}<span className='tooltiptext' id="headerrow">{text[antibiotic]}</span></div></th>
     )]
 
     //create table content

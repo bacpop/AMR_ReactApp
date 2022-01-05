@@ -30,11 +30,12 @@ h4{
   color: red;
 }
 
-p{
+p,h3{
   color: var(--darkblue);
   width:80%;
   margin-left: auto;
   margin-right: auto;
+  line-height: 200%;
 }
 
 .comment{
@@ -45,7 +46,7 @@ p{
 }
 
 .dragdrop {
-  background-color: #3a6b9b;
+  background-color: #8b8e92;
   height: 3.2cm;
   text-align: center;
   border: 2.5px dashed var(--background);
@@ -74,51 +75,52 @@ th{
   color: var(--blue);
 }
 
+#simpletable{
+  width: 50%;
+}
+#simpletable th, #simpletable td{
+  border-bottom: 1px solid var(--darkblue);
+}
+
 
 .center {
   margin-left: auto;
   margin-right: auto;
 }
 
-#download{
-  background-color: var(--background); 
-  border-radius: 4px;
-  border: 2.3px solid var(--blue);
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 20px;
+#download{ 
   display: block;
   margin: 0 auto 30px auto;
+}
+
+#info{
+  margin: 0 auto 30px auto;
+  display: inline-block;
 }
 
 #about{
   float: right;
   margin:30px;
+}
+
+#info, #about, #download{
   background-color: var(--background); 
   border-radius: 4px;
   border: 2.3px solid var(--blue);
-  color:  var(--blue);
   text-align: center;
+  color:  var(--blue);
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: bold;
   padding: 10px 20px;
 }
 
-a.button{
-  background-color: var(--background); 
-  border-radius: 4px;
-  border: 2.3px solid var(--blue);
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 20px;
-  display: block;
-  margin:  2% 0 3% 10%;
-  display: inline-block;
+.buttons-flex {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin: 50px 0 0 0;
 }
 
 .hr_line{
@@ -135,6 +137,7 @@ a.button{
 a {
   color:  var(--blue);
   text-decoration: none;
+  font-weight: bold;
 }
 
 a:hover {
@@ -177,31 +180,50 @@ a:hover {
   color:rgb(160, 17, 46);
 }
 
- .tooltip {
+.tooltip {
   position: relative;
   display: inline-block;
+  color:  var(--blue);
+  font-weight: bold;
 }
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 200px;
   background-color: #555;
   color: #fff;
   text-align: center;
   padding: 5px;
   border-radius: 6px;
-
+  opacity: 0;
+  transition: opacity 0.3s;
+  
+}
+#headerrow{
+  width: 200px;
   position: absolute;
   z-index: 1;
   top: 135%;
   left: 50%;  
   margin-left: -100px;
-
-  opacity: 0;
-  transition: opacity 0.3s;
+}
+#glossary, #glossary_end{
+  width:30vw;
+  position: absolute;
+  left: 50%;
+  margin-left: -15vw;
+  font-weight:normal;
+  line-height: 120%;
 }
 
-.tooltip .tooltiptext::after {
+#glossary{
+  top: 115%;
+}
+
+#glossary_end{
+  bottom: 100%;
+}
+
+.tooltip .tooltiptext::after{
   content: "";
     position: absolute;
     bottom: 100%;
@@ -210,6 +232,11 @@ a:hover {
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent #555 transparent;
+}
+
+.tooltip #glossary_end.tooltiptext::after{
+  top: 100%;
+  border-color: #555 transparent transparent transparent;
 }
 
 .tooltip:hover .tooltiptext {
