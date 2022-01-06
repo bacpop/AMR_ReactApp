@@ -1,3 +1,5 @@
+[![Azure Static Web Apps CI/CD](https://github.com/bacpop/AMR_ReactApp/actions/workflows/azure-static-web-apps-gentle-coast-0d6523403.yml/badge.svg)](https://github.com/bacpop/AMR_ReactApp/actions/workflows/azure-static-web-apps-gentle-coast-0d6523403.yml)
+
 # AMR prediction tool for *S.pneumoniae*
 
 ## Overview
