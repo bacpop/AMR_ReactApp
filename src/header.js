@@ -39,18 +39,18 @@ const AboutContent = ({ visible }) => {
     >
       <div ref={summaryRef} >
         <p>
-          This tool predicts the probability of resistance to 5 different antibiotics in <em>S.pneumoniae</em>. 
+        This tool predicts the probability of resistance to five different antibiotics in <em>S. pneumoniae</em> : beta-lactams (penicillin), chloramphenicol, erythromycin, tetracycline, and co-trimoxazole (Trim_sulfa). 
         </p>
         <p>
-          Predictions are based on genetic sequence content, therefore FASTA-files are required as input data. Linear models, trained on data from the USA and South Africa from the <a href="https://www.pneumogen.net/gps/">GPS</a> database, are applied and return probabilities of resistance to the respective antibiotics.
+        Predictions are based on a machine-learning model fitted to genetic sequence content, therefore FASTA-files are required as input data. Specifically, we trained an elastic net model on genomic data from the USA and South Africa from the <a href="https://www.pneumogen.net/gps/" target="_blank" rel="noreferrer">GPS</a> databases. This results in a simple, sparse linear model which we can rapidly apply to new sequences. For your data, this model is applied to each sample one-by-one, and we return probabilities of resistance to each of the included antibiotics.
         </p>
         <p>
-        All data is processed within the web browser, which means that no data is uploaded to a server. This ensures that data protection is maintained.
+        NB: All data is processed entirely within your web browser (using WebAssembly), which means that no data is uploaded to a server or ever leaves your computer. This avoids any slow uploads, and also ensures that data protection is maintained.
         </p>
         <div class="buttons-flex">
           <button id="info" onClick={toggleDetail}>More info</button>
-          <button id="info"><a href='https://github.com/bacpop/AMR_ReactApp' target="_blank" rel="noreferrer">Website code</a></button>
-          <button id="info"><a href='https://github.com/bacpop/AMR_prediction' target="_blank" rel="noreferrer">Backend code</a></button>
+          <button id="info" ><a href='https://github.com/bacpop/AMR_ReactApp' className="button_with_link" target="_blank" rel="noreferrer">Website code</a></button>
+          <button id="info"><a href='https://github.com/bacpop/AMR_prediction' className="button_with_link" target="_blank" rel="noreferrer">Backend code</a></button>
         </div>
         
       </div>
@@ -60,16 +60,16 @@ const AboutContent = ({ visible }) => {
           Intended use:
         </h3>
         <p>
-          This tool can help identifying resistant <em>S.pneumoniae</em> isolates based on their genetic sequence. FASTA files should contain the whole genome to ensure all relevant sequences are covered if present.
+          This tool can help identifying resistant <em>S. pneumoniae</em> isolates based on their genetic sequence. FASTA files should contain the whole genome to ensure all relevant sequences are covered if present.
         </p>
         <p>
-          It is intended for use on <em>S.pneumoniae</em> only, other species are not covered. The performance of the models (see below) on independent test datasets can help you to better interpret the reliability of the predictions. Please keep in mind that data from very different genetic backgrounds to the training and test datasets may perform worse.
+          It is intended for use on <em>S. pneumoniae</em> only, other species are not covered. The performance of the models (see below) on independent test datasets can help you to better interpret the reliability of the predictions. Please keep in mind that data from very different genetic backgrounds to the training and test datasets may perform worse.
         </p>
         <p>
           The colour shading of the results table depends on the strength of the prediction and also on the distribution of test dataset results for the respective antibiotic. Since the models for chloramphenicol and tetracycline provide most results near 0.5, the change in shades is more pronounced in this area. Models for penicillin and trim/sulfa provided more results near 0 and 1, so for these antibiotics the shading changes more towards the extremes. For erythromycin, the shading changes linearly with the probability.
         </p>
         <p>
-          You can submit as many <em>S.pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
+          You can submit as many <em>S. pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
           </p>
         <h3>
           Models:
@@ -81,7 +81,8 @@ const AboutContent = ({ visible }) => {
           input features. The predicted output is a binary resistance status (susceptible and resistant, according to the <a href="https://www.nih.org.pk/wp-content/uploads/2021/02/CLSI-2020.pdf" target="_blank" rel="noreferrer">CLSI</a> breakpoints, classifying ‘intermediate’ and ‘resistant’ together as ‘resistant’). Probabilities of resistance are calculated, and samples classified according to their probability at a threshold of 0.5.
         </p>
         <p>
-          The performance of the models were tested on two independent datasets, one from Massachusetts and one from Maela in Thailand, 
+          The performance of the models were tested on two independent datasets, one from <a href="http://dx.doi.org/10.1038/sdata.2015.58" target="_blank" rel="noreferrer">Massachusetts</a> and 
+          one from <a href="http://dx.doi.org/10.1038/ng.2895" target="_blank" rel="noreferrer">Maela</a> in Thailand, 
           and <div className="tooltip" >Balanced Accuracies<span className='tooltiptext' id='glossary_end'>A metric to evaluate the predictive performance, calculated by (Sensitivity+Specificity)/2, that accounts for class-imbalances in the data.</span></div> were 
           calculated to assess the predictive performance of the binary classification. See the below table for the Balanced Accuracies on the test datasets:
         </p>
