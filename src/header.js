@@ -138,7 +138,7 @@ const Header = () => {
   return (
     <header>
       <span>
-        <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
+        <h1>AMR prediction tool for <em>S. pneumoniae</em></h1>
         <button id='about' onClick={toggleVisibility}>
           About
         </button>
