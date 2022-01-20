@@ -76,14 +76,14 @@ const AboutContent = ({ visible }) => {
         </h3>
         <p>
           The models used for prediction are 
-          logistic <div className="tooltip" >ElasticNet<span className='tooltiptext' id='glossary'>A machine learning model that performs both feature selection and coefficient shrinkage to prevent overfitting. It can handle more input features than datapoints, and is also able to handle collinear features.</span></div> models, 
-          trained with <div className="tooltip" >unitigs<span className='tooltiptext' id='glossary'>Nucleotide sequences of variable length that are based on <a href="https://pubmed.ncbi.nlm.nih.gov/30419019/#&gid=article-figures&pid=fig-1-uid-0" target="_blank" rel="noreferrer" style={{"color":"lightblue"}}>De Bruijn graphs</a>, which represent the genetic variability in a population and can capture both small and larger genetic changes.</span></div> as 
+          logistic <div className="tooltip" style={{"color":"#003e74","font-weight":"bold"}}>ElasticNet<span className='tooltiptext' id='glossary'>A machine learning model that performs both feature selection and coefficient shrinkage to prevent overfitting. It can handle more input features than datapoints, and is also able to handle collinear features.</span></div> models, 
+          trained with <div className="tooltip" style={{"color":"#003e74","font-weight":"bold"}}>unitigs<span className='tooltiptext' id='glossary'>Nucleotide sequences of variable length that are based on <a href="https://pubmed.ncbi.nlm.nih.gov/30419019/#&gid=article-figures&pid=fig-1-uid-0" target="_blank" rel="noreferrer" style={{"color":"lightblue"}}>De Bruijn graphs</a>, which represent the genetic variability in a population and can capture both small and larger genetic changes.</span></div> as 
           input features. The predicted output is a binary resistance status (susceptible and resistant, according to the <a href="https://www.nih.org.pk/wp-content/uploads/2021/02/CLSI-2020.pdf" target="_blank" rel="noreferrer">CLSI</a> breakpoints, classifying ‘intermediate’ and ‘resistant’ together as ‘resistant’). Probabilities of resistance are calculated, and samples classified according to their probability at a threshold of 0.5.
         </p>
         <p>
           The performance of the models were tested on two independent datasets, one from <a href="http://dx.doi.org/10.1038/sdata.2015.58" target="_blank" rel="noreferrer">Massachusetts</a> and 
           one from <a href="http://dx.doi.org/10.1038/ng.2895" target="_blank" rel="noreferrer">Maela</a> in Thailand, 
-          and <div className="tooltip" >Balanced Accuracies<span className='tooltiptext' id='glossary_end'>A metric to evaluate the predictive performance, calculated by (Sensitivity+Specificity)/2, that accounts for class-imbalances in the data.</span></div> were 
+          and <div className="tooltip" style={{"color":"#003e74","font-weight":"bold"}}>Balanced Accuracies<span className='tooltiptext' id='glossary_end'>A metric to evaluate the predictive performance, calculated by (Sensitivity+Specificity)/2, that accounts for class-imbalances in the data.</span></div> were 
           calculated to assess the predictive performance of the binary classification. See the below table for the Balanced Accuracies on the test datasets:
         </p>
         <table className="center" id='simpletable'>
@@ -138,6 +138,7 @@ const Header = () => {
   return (
     <header>
       <span>
+        <img src="/amima_grafik.png" alt="AMIMA Logo" style={{"width":"15%","min-width":"5cm","padding":"15px 15px 0 3%"}}></img>
         <h1>AMR prediction tool for <em>S. pneumoniae</em></h1>
         <button id='about' onClick={toggleVisibility}>
           About
