@@ -3,7 +3,7 @@ import React from "react";
 function verbal_prob(prob, antibiotic){
 //Translate probabilities into words based on BA and distribution of results
 var word = prob;
-    if(antibiotic=="Penicillin"){ //BA: 0.933/0.836, most resulst <0.2 or > 0.8
+    if(antibiotic==="Penicillin"){ //BA: 0.933/0.836, most resulst <0.2 or > 0.8
         if(prob>0.8){word="Highly likely";}
         else if (prob>0.6){word="Probably";}        
         else if (prob>0.5){word="Likely";}
