@@ -5,7 +5,7 @@ function verbal_prob(prob, antibiotic){
 var word = prob;
     if(antibiotic==="Penicillin"){ 
         if(prob>=0.9){word="Highly likely";}
-        else if (prob>=0.0.75){word="Very good chance";}        
+        else if (prob>=0.75){word="Very good chance";}        
         else if (prob>=0.5){word="Probably";}
         else if (prob>=0.4){word="Probably not";}
         else if (prob>=0.2){word="Unlikely";}
