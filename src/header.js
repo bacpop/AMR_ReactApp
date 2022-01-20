@@ -138,7 +138,7 @@ const Header = () => {
   return (
     <header>
       <span>
-        <img src="/amima_grafik.png" alt="AMIMA Logo" style={{"width":"15%","min-width":"5cm","padding":"15px 15px 0 3%"}}></img>
+        <img src="/amima_grafik.png" alt="AMIMA Logo" style={{"width":"20%","min-width":"5cm","padding":"15px 15px 0 3%"}}></img>
         <h1>AMR prediction tool for <em>S. pneumoniae</em></h1>
         <button id='about' onClick={toggleVisibility}>
           About

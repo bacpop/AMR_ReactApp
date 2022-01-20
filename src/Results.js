@@ -1,41 +1,36 @@
 import React from "react";
 
 function verbal_prob(prob, antibiotic){
-//Translate probabilities into words based on BA and distribution of results
+//Translate probabilities into words based on accuracy on Maela test dataset
 var word = prob;
-    if(antibiotic==="Penicillin"){ //BA: 0.933/0.836, most resulst <0.2 or > 0.8
-        if(prob>0.8){word="Highly likely";}
-        else if (prob>0.6){word="Probably";}        
-        else if (prob>0.5){word="Likely";}
-        else if (prob>0.4){word="Probably not";}
-        else if (prob>0.2){word="Unlikely";}
+    if(antibiotic==="Penicillin"){ 
+        if(prob>=0.9){word="Highly likely";}
+        else if (prob>=0.0.75){word="Very good chance";}        
+        else if (prob>=0.5){word="Probably";}
+        else if (prob>=0.4){word="Probably not";}
+        else if (prob>=0.2){word="Unlikely";}
         else {word="Highly unlikely";}
     }
-    else if(antibiotic==="Chloramphenicol"){ //BA: 0.81, most results between 0.3 and 0.6
-        if(prob>=0.55){word="Very Good chance";}
-        else if (prob>0.5){word="Probably";}
-        else if (prob>0.45){word="Probably not";}
+    else if(antibiotic==="Chloramphenicol"){ 
+        if(prob>=0.55){word="Probably";}
+        else if (prob>=0.5){word="Maybe";}
+        else {word="Highly unlikely";}
+    }
+    else if(antibiotic==="Erythromycin"){
+        if(prob>=0.5){word="Almost certainly";}
+        else if (prob>=0.2){word="Probably not";}
+        else {word="Highly unlikely";}
+    }
+    else if(antibiotic==="Tetracycline"){ 
+        if(prob>=0.5){word="Almost certainly";}
+        else {word="Highly unlikely";}
+    }
+    else if(antibiotic==="Trim_sulfa"){ 
+        if(prob>0.8){word="Almost certainly";}
+        else if (prob>0.7){word="Highly likely";}
+        else if (prob>0.5){word="Very good chance";}
+        else if (prob>0.2){word="Probably not";}
         else {word="Unlikely";}
-    }
-    else if(antibiotic==="Erythromycin"){//BA: 0.959/0.961, most results around 0.15 and 0.6-0.7
-        if(prob>=0.6){word="Almost certainly";}
-        else if (prob>0.5){word="Probably";}
-        else if (prob>0.4){word="Unlikely";}
-        else {word="Almost no chance";}
-    }
-    else if(antibiotic==="Tetracycline"){ //BA: 0.953/0.940, most results between 0.35 and 0.6
-        if(prob>=0.55){word="Almost certainly";}
-        else if (prob>0.5){word="Probably";}
-        else if (prob>0.45){word="Unlikely";}
-        else {word="Almost no chance";}
-    }
-    else if(antibiotic==="Trim_sulfa"){ //BA: 0.954/0.837, most results <0.15 or >0.85
-        if(prob>0.8){word="Highly likely";}
-        else if (prob>0.6){word="Probably";}
-        else if (prob>0.5){word="Likely";}
-        else if (prob>0.4){word="Probably not";}
-        else if (prob>0.2){word="Unlikely";}
-        else {word="Highly unlikely";}
     }
     return(word)
 }
@@ -61,9 +56,9 @@ function getRGB(prob, antibiotic){
         if(antibiotic==="Penicillin"||antibiotic==="Trim_sulfa"){prob*=prob;}
         else if (antibiotic==="Chloramphenicol"||antibiotic==="Tetracycline"){prob=Math.sqrt(prob);}
         else if (antibiotic==="Erythromycin"){}
-        r=255;
-        g=255-prob*255; 
-        b=255-prob*255;
+        r=255-(prob*(255-164));
+        g=255-(prob*(255-11));
+        b=255-(prob*(255-71));
     }
     return("rgb("+r+","+g+","+b+")")
 }
