@@ -1,6 +1,7 @@
 [![Azure Static Web Apps CI/CD](https://github.com/bacpop/AMR_ReactApp/actions/workflows/azure-static-web-apps-gentle-coast-0d6523403.yml/badge.svg)](https://github.com/bacpop/AMR_ReactApp/actions/workflows/azure-static-web-apps-gentle-coast-0d6523403.yml)
 
-# AMR prediction tool for *S.pneumoniae*
+# AMIMA <img src='public/amima_grafik2.png' align="right" height="75" />
+## AMR prediction tool for *S.pneumoniae*
 
 ## Overview
 
@@ -11,7 +12,7 @@ https://amr.poppunk.net/ is a tool to predict antimicrobial resistance in __*S.p
 - Tetracycline
 - Trimethoprim/Sulfamethoxazole
 
-## Intended use
+### Intended use
 
 Files in FASTA format can be uploaded via a drag and drop area. Submission of multiple files at a time is possible.
 Files should cover the whole genome to ensure the models can be applied correctly.
@@ -20,7 +21,7 @@ Results are displayed in a table, giving the probability of resistance to the re
 
 The table can be downloaded in CSV format.
 
-## Methods
+### Methods
 
 The models applied are logistic [ElasticNet](https://en.wikipedia.org/wiki/Elastic_net_regularization) models trained on data from the USA and South Africa from the [GPS](https://www.pneumogen.net/gps/) database.
 
@@ -38,6 +39,6 @@ The models have been tested on independent datasets from Massachusetts and Maela
 
 The website was build using React.js. The backend code can be found [here](https://github.com/bacpop/AMR_prediction).
 
-## Contributors
+### Contributors
 
 This tool was developed by [Marie Gronemeyer](https://github.com/muppi1993) and [John Lees](https://github.com/johnlees).
