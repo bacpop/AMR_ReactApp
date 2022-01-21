@@ -87,14 +87,14 @@ function Results(props){
     const tableItems =[];
     for(let i = 0; i <results.length; i++){
         var newStrain = [
-        <td key={antibiotics[0]}>{results[i][antibiotics[0]]+(results[i]["length"] ? '' : ' \u2757')}</td> , //do filename sepearetly to not include tooltip
+        <td key={antibiotics[0]}>  {(results[i]["length"] ? results[i][antibiotics[0]] : <div className="tooltip" >{results[i][antibiotics[0]]+' \u2757'}<span className='tooltiptext' id="headerrow">{"This sequence is of unusual length for S. pneumoniae"}</span></div>) } </td> , //do filename seperately to only include tooltip for too long/short sequences
         antibiotics.slice(1,-1).map((antibiotic) =>  
             <td style= {{background:getRGB(results[i][antibiotic],[antibiotic]) }} key={antibiotic}><div className="tooltip" >{verbal_prob(results[i][antibiotic],antibiotic)}<span className='tooltiptext' id="headerrow">{results[i][antibiotic]}</span></div></td> 
         )]
         if(results[i]["length"]===true){ 
             tableItems.push(<tr key = {results[i]["filename"]}>{newStrain}</tr>);
         }//make row red only  if length is false (i.e. length of sequence <1.5Mb/>3Mb)
-        else{tableItems.push(<tr style={{"color":"rgb(160, 17, 46)"}} key = {results[i]["filename"]}>{newStrain}</tr>);}
+        else{tableItems.push(<tr style={{"color":"red"}} key = {results[i]["filename"]}>{newStrain}</tr>);}
     }
 
     return(
