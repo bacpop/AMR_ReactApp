@@ -9,28 +9,28 @@ var word = prob;
         else if (prob>=0.5){word="Probably";}
         else if (prob>=0.4){word="Probably not";}
         else if (prob>=0.2){word="Unlikely";}
-        else {word="Highly unlikely";}
+        else if (prob<0.2) {word="Highly unlikely";}
     }
     else if(antibiotic==="Chloramphenicol"){ 
         if(prob>=0.55){word="Probably";}
-        else if (prob>=0.5){word="Maybe";}
-        else {word="Highly unlikely";}
+        else if (prob>=0.5){word="Unsure";}
+        else if (prob<0.5){word="Highly unlikely";}
     }
     else if(antibiotic==="Erythromycin"){
         if(prob>=0.5){word="Almost certainly";}
         else if (prob>=0.2){word="Probably not";}
-        else {word="Highly unlikely";}
+        else if (prob<0.2){word="Highly unlikely";}
     }
     else if(antibiotic==="Tetracycline"){ 
         if(prob>=0.5){word="Almost certainly";}
-        else {word="Highly unlikely";}
+        else if (prob<0.5){word="Highly unlikely";}
     }
     else if(antibiotic==="Trim_sulfa"){ 
-        if(prob>0.8){word="Almost certainly";}
-        else if (prob>0.7){word="Highly likely";}
-        else if (prob>0.5){word="Very good chance";}
-        else if (prob>0.2){word="Probably not";}
-        else {word="Unlikely";}
+        if(prob>=0.8){word="Almost certainly";}
+        else if (prob>=0.7){word="Highly likely";}
+        else if (prob>=0.5){word="Very good chance";}
+        else if (prob>=0.2){word="Probably not";}
+        else if (prob<0.2){word="Unlikely";}
     }
     return(word)
 }
@@ -66,7 +66,7 @@ function getRGB(prob, antibiotic){
 function Results(props){
 //create table to display results
     let results = props.resArr;
-    const antibiotics = Object.keys(results[0]);
+    const antibiotics = ["filename", "Penicillin", "Chloramphenicol", "Erythromycin","Tetracycline", "Trim_sulfa","length","species"];
     
      //texts for tooltips on antibiotics
      const text=[];
@@ -79,7 +79,7 @@ function Results(props){
     //create head of table
     const head = [
         <th key={antibiotics[0]}>{antibiotics[0]}</th>, //do 'filename' seperately to not include tooltip
-        antibiotics.slice(1,-1).map((antibiotic) =>  
+        antibiotics.slice(1,-2).map((antibiotic) =>  
         <th key={antibiotic}><div className="tooltip" >{antibiotic}<span className='tooltiptext' id="headerrow">{text[antibiotic]}</span></div></th>
     )]
 
@@ -87,11 +87,11 @@ function Results(props){
     const tableItems =[];
     for(let i = 0; i <results.length; i++){
         var newStrain = [
-        <td key={antibiotics[0]}>  {(results[i]["length"] ? results[i][antibiotics[0]] : <div className="tooltip" >{results[i][antibiotics[0]]+' \u2757'}<span className='tooltiptext' id="headerrow">{"This sequence is of unusual length for S. pneumoniae"}</span></div>) } </td> , //do filename seperately to only include tooltip for too long/short sequences
-        antibiotics.slice(1,-1).map((antibiotic) =>  
+        <td key={antibiotics[0]}>  {(results[i]["length"] ? results[i][antibiotics[0]] : (results[i]["species"] ? <div className="tooltip" >{results[i][antibiotics[0]]+' \u2757'}<span className='tooltiptext' id="headerrow">{"This sequence is of unusual length for S. pneumoniae"}</span></div> : <div className="tooltip" >{results[i][antibiotics[0]]+' \u2757'}<span className='tooltiptext' id="headerrow">{"This sequence is not S. pneumoniae"}</span></div>)) } </td> , //do filename seperately to only include tooltip for too long/short sequences
+        antibiotics.slice(1,-2).map((antibiotic) =>  
             <td style= {{background:getRGB(results[i][antibiotic],[antibiotic]) }} key={antibiotic}><div className="tooltip" >{verbal_prob(results[i][antibiotic],antibiotic)}<span className='tooltiptext' id="headerrow">{results[i][antibiotic]}</span></div></td> 
         )]
-        if(results[i]["length"]===true){ 
+        if(results[i]["length"]===true && results[i]["species"]===true){ 
             tableItems.push(<tr key = {results[i]["filename"]}>{newStrain}</tr>);
         }//make row red only  if length is false (i.e. length of sequence <1.5Mb/>3Mb)
         else{tableItems.push(<tr style={{"color":"red"}} key = {results[i]["filename"]}>{newStrain}</tr>);}
