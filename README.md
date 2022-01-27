@@ -21,6 +21,8 @@ Results are displayed in a table, giving the probability of resistance to the re
 
 The table can be downloaded in CSV format.
 
+Don't use this tool for clinical practice.
+
 ### Methods
 
 The models applied are logistic [ElasticNet](https://en.wikipedia.org/wiki/Elastic_net_regularization) models trained on data from the USA and South Africa from the [GPS](https://www.pneumogen.net/gps/) database.
