@@ -57,7 +57,7 @@ function App (){
             <Results resArr={predictionResult}/>
           </div>    
         }
-        {(formatCheck===0)&& <h1>Wrong format!</h1>}       
+        {(formatCheck===0)&& <h2>Wrong format or too many sequences submitted!</h2>}       
       </main> 
     </>
   )
