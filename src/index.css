@@ -1,8 +1,7 @@
 :root {
-  --blue: #003e74;
+  --blue: #1c5a71;
   --background: #f8f8f8;
-  --darkblue: #030f25;
-  --spinner: #003e744f;
+  --darkblue: #002b58;
 }
 
 body {
@@ -13,9 +12,8 @@ body {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
   color: var(--blue);
-  margin-left: 2cm;
   display: inline-block
 }
 
@@ -47,7 +45,7 @@ p,h3{
 
 .dragdrop {
   background-color: #8b8e92;
-  height: 3.2cm;
+  height: 3.7cm;
   text-align: center;
   border: 2.5px dashed var(--background);
   width:60%;
@@ -192,8 +190,6 @@ a:hover {
 .tooltip {
   position: relative;
   display: inline-block;
-  color:  var(--blue);
-  font-weight: bold;
 }
 
 .tooltip .tooltiptext {
@@ -202,7 +198,7 @@ a:hover {
   color: #fff;
   text-align: center;
   padding: 5px;
-  border-radius: 6px;
+  border-radius: 3px;
   opacity: 0;
   transition: opacity 0.3s;
   

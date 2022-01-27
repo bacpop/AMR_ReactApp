@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import mapping from './mapping.png';
 
 const AboutContent = ({ visible }) => {
   const [detailVisible, setDetailVisible] = useState(false)
@@ -47,7 +48,7 @@ const AboutContent = ({ visible }) => {
         <p>
         NB: All data is processed entirely within your web browser (using WebAssembly), which means that no data is uploaded to a server or ever leaves your computer. This avoids any slow uploads, and also ensures that data protection is maintained.
         </p>
-        <div class="buttons-flex">
+        <div className="buttons-flex">
           <button id="info" onClick={toggleDetail}>More info</button>
           <button id="info" ><a href='https://github.com/bacpop/AMR_ReactApp' className="button_with_link" target="_blank" rel="noreferrer">Website code</a></button>
           <button id="info"><a href='https://github.com/bacpop/AMR_prediction' className="button_with_link" target="_blank" rel="noreferrer">Backend code</a></button>
@@ -67,23 +68,27 @@ const AboutContent = ({ visible }) => {
         </p>
         <p>
           The colour shading of the results table depends on the strength of the prediction and also on the distribution of test dataset results for the respective antibiotic. Since the models for chloramphenicol and tetracycline provide most results near 0.5, the change in shades is more pronounced in this area. Models for penicillin and trim/sulfa provided more results near 0 and 1, so for these antibiotics the shading changes more towards the extremes. For erythromycin, the shading changes linearly with the probability.
+          To underline the uncertainty of the predictions we decided to display probabilities using words in the table, according to 
+          this <a href={mapping} target="_blank" rel="noreferrer"> mapping </a>. The numerical probabilities are displayed when hovering over the cells.
+        
+        
         </p>
         <p>
-          You can submit as many <em>S. pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
-          </p>
+          You can submit up to 30 <em>S. pneumoniae</em> sequences in FASTA format at a time. The results are available for download as CSV.
+        </p>
         <h3>
           Models:
         </h3>
         <p>
           The models used for prediction are 
-          logistic <div className="tooltip" >ElasticNet<span className='tooltiptext' id='glossary'>A machine learning model that performs both feature selection and coefficient shrinkage to prevent overfitting. It can handle more input features than datapoints, and is also able to handle collinear features.</span></div> models, 
-          trained with <div className="tooltip" >unitigs<span className='tooltiptext' id='glossary'>Nucleotide sequences of variable length that are based on <a href="https://pubmed.ncbi.nlm.nih.gov/30419019/#&gid=article-figures&pid=fig-1-uid-0" target="_blank" rel="noreferrer" style={{"color":"lightblue"}}>De Bruijn graphs</a>, which represent the genetic variability in a population and can capture both small and larger genetic changes.</span></div> as 
+          logistic <div className="tooltip" style={{"color":"#003e74","fontWeight":"bold"}}>ElasticNet<span className='tooltiptext' id='glossary'>A machine learning model that performs both feature selection and coefficient shrinkage to prevent overfitting. It can handle more input features than datapoints, and is also able to handle collinear features.</span></div> models, 
+          trained with <div className="tooltip" style={{"color":"#003e74","fontWeight":"bold"}}>unitigs<span className='tooltiptext' id='glossary'>Nucleotide sequences of variable length that are based on <a href="https://pubmed.ncbi.nlm.nih.gov/30419019/#&gid=article-figures&pid=fig-1-uid-0" target="_blank" rel="noreferrer" style={{"color":"lightblue"}}>De Bruijn graphs</a>, which represent the genetic variability in a population and can capture both small and larger genetic changes.</span></div> as 
           input features. The predicted output is a binary resistance status (susceptible and resistant, according to the <a href="https://www.nih.org.pk/wp-content/uploads/2021/02/CLSI-2020.pdf" target="_blank" rel="noreferrer">CLSI</a> breakpoints, classifying ‘intermediate’ and ‘resistant’ together as ‘resistant’). Probabilities of resistance are calculated, and samples classified according to their probability at a threshold of 0.5.
         </p>
         <p>
           The performance of the models were tested on two independent datasets, one from <a href="http://dx.doi.org/10.1038/sdata.2015.58" target="_blank" rel="noreferrer">Massachusetts</a> and 
           one from <a href="http://dx.doi.org/10.1038/ng.2895" target="_blank" rel="noreferrer">Maela</a> in Thailand, 
-          and <div className="tooltip" >Balanced Accuracies<span className='tooltiptext' id='glossary_end'>A metric to evaluate the predictive performance, calculated by (Sensitivity+Specificity)/2, that accounts for class-imbalances in the data.</span></div> were 
+          and <div className="tooltip" style={{"color":"#003e74","fontWeight":"bold"}}>Balanced Accuracies<span className='tooltiptext' id='glossary_end'>A metric to evaluate the predictive performance, calculated by (Sensitivity+Specificity)/2, that accounts for class-imbalances in the data.</span></div> were 
           calculated to assess the predictive performance of the binary classification. See the below table for the Balanced Accuracies on the test datasets:
         </p>
         <table className="center" id='simpletable'>
@@ -138,7 +143,8 @@ const Header = () => {
   return (
     <header>
       <span>
-        <h1>AMR prediction tool for <em>S.pneumoniae</em></h1>
+        <img src="/amima_grafik.png" alt="AMIMA Logo" title="AntiMicrobial Inhibition Machine Automated" style={{"width":"20%","minWidth":"5cm","padding":"15px 15px 0 3%"}}></img>
+        <h1>AMR prediction tool for <em>S. pneumoniae</em></h1>
         <button id='about' onClick={toggleVisibility}>
           About
         </button>

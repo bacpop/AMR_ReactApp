@@ -50,14 +50,14 @@ function App (){
         <Header />
         <DropZone onDrop={onDrop}/>
         <p className='comment'>If you don't have a sequence at hand, try the tool with our <span id="selecttext" onClick={run_examples}>example sequences!</span> </p>
-        {loading===true && <SpinnerCircular id = "spinner" size={58} thickness={180} speed={132} color="rgba(0, 62, 116, 1)" secondaryColor="rgba(158, 175, 190, 1)" />}
+        {loading===true && <SpinnerCircular id = "spinner" size={58} thickness={180} speed={132} color="rgba(78,164,121,1)" secondaryColor="rgba(158, 175, 190, 1)" />}
         {(predictionResult !== [] &&  formatCheck===true && loading===false) &&  
           <div>
             <button id="download"><CSVLink data={predictionResult}>Download Results as CSV</CSVLink></button>
             <Results resArr={predictionResult}/>
           </div>    
         }
-        {(formatCheck===0)&& <h1>Wrong format!</h1>}       
+        {(formatCheck===0)&& <h2>Wrong format or too many sequences submitted!</h2>}       
       </main> 
     </>
   )
