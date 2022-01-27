@@ -69,7 +69,7 @@ const AboutContent = ({ visible }) => {
         <p>
           The colour shading of the results table depends on the strength of the prediction and also on the distribution of test dataset results for the respective antibiotic. Since the models for chloramphenicol and tetracycline provide most results near 0.5, the change in shades is more pronounced in this area. Models for penicillin and trim/sulfa provided more results near 0 and 1, so for these antibiotics the shading changes more towards the extremes. For erythromycin, the shading changes linearly with the probability.
           To underline the uncertainty of the predictions we decided to display probabilities using words in the table, according to 
-          this <a href={mapping} target="_blank"> mapping </a>. The numerical probabilities are displayed when hovering over the cells.
+          this <a href={mapping} target="_blank" rel="noreferrer"> mapping </a>. The numerical probabilities are displayed when hovering over the cells.
         
         
         </p>
