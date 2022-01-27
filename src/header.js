@@ -47,7 +47,7 @@ const AboutContent = ({ visible }) => {
         <p>
         NB: All data is processed entirely within your web browser (using WebAssembly), which means that no data is uploaded to a server or ever leaves your computer. This avoids any slow uploads, and also ensures that data protection is maintained.
         </p>
-        <div class="buttons-flex">
+        <div className="buttons-flex">
           <button id="info" onClick={toggleDetail}>More info</button>
           <button id="info" ><a href='https://github.com/bacpop/AMR_ReactApp' className="button_with_link" target="_blank" rel="noreferrer">Website code</a></button>
           <button id="info"><a href='https://github.com/bacpop/AMR_prediction' className="button_with_link" target="_blank" rel="noreferrer">Backend code</a></button>
@@ -67,10 +67,16 @@ const AboutContent = ({ visible }) => {
         </p>
         <p>
           The colour shading of the results table depends on the strength of the prediction and also on the distribution of test dataset results for the respective antibiotic. Since the models for chloramphenicol and tetracycline provide most results near 0.5, the change in shades is more pronounced in this area. Models for penicillin and trim/sulfa provided more results near 0 and 1, so for these antibiotics the shading changes more towards the extremes. For erythromycin, the shading changes linearly with the probability.
+          To underline the uncertainty of the predictions we decided to display probabilities using words in the table, according to 
+          this <a href="../public/amima_grafik.png" target="_blank">
+            <img alt='mapping' src='../public/mapping.png' />
+          </a>. The numerical probabilities are displayed when hovering over the cells.
+        
+        
         </p>
         <p>
-          You can submit as many <em>S. pneumoniae</em> sequences in FASTA format as you wish. The results are available for download as CSV.
-          </p>
+          You can submit up to 30 <em>S. pneumoniae</em> sequences in FASTA format at a time. The results are available for download as CSV.
+        </p>
         <h3>
           Models:
         </h3>
@@ -138,7 +144,7 @@ const Header = () => {
   return (
     <header>
       <span>
-        <img src="/amima_grafik.png" alt="AMIMA Logo" title="AntiMicrobial Inhibition Machine Automated" style={{"width":"20%","min-width":"5cm","padding":"15px 15px 0 3%"}}></img>
+        <img src="/amima_grafik.png" alt="AMIMA Logo" title="AntiMicrobial Inhibition Machine Automated" style={{"width":"20%","minWidth":"5cm","padding":"15px 15px 0 3%"}}></img>
         <h1>AMR prediction tool for <em>S. pneumoniae</em></h1>
         <button id='about' onClick={toggleVisibility}>
           About
