@@ -80,7 +80,7 @@ function Results(props){
     const head = [
         <th key={antibiotics[0]}>{antibiotics[0]}</th>, //do 'filename' seperately to not include tooltip
         antibiotics.slice(1,-2).map((antibiotic) =>  
-        <th key={antibiotic}><div className="tooltip" >{antibiotic}<span className='tooltiptext' id="headerrow">{text[antibiotic]}</span></div></th>
+        <th key={antibiotic}><div className="tooltip" id= 'dotted' >{antibiotic}<span className='tooltiptext' id="headerrow">{text[antibiotic]}</span></div></th>
     )]
 
     //create table content

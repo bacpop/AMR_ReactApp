@@ -94,11 +94,24 @@ th{
 #info{
   margin: 0 auto 30px auto;
   display: inline-block;
+
+}
+
+#info:hover{
+  background: rgb(130, 201, 169);
 }
 
 #about{
   float: right;
   margin:30px;
+}
+
+#about:hover{
+  background: rgb(130, 201, 169);
+}
+
+#download:hover{
+  background: rgb(130, 201, 169);
 }
 
 #info, #about, #download{
@@ -151,6 +164,10 @@ a:hover {
   cursor:pointer;
  }
 
+#inline_link:hover{
+  color:rgb(78, 161, 124);
+}
+
 #selecttext{
   color:  var(--blue);
 }
@@ -190,6 +207,10 @@ a:hover {
 .tooltip {
   position: relative;
   display: inline-block;
+}
+
+#dotted {
+  border-bottom: 1px dotted;
 }
 
 .tooltip .tooltiptext {
